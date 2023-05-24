@@ -1,0 +1,52 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+string getPasswordInput() {
+    string password;
+    char ch;
+    while ((ch = _getch()) != '\r') {
+        if (ch == '\b') {
+            if (!password.empty()) {
+                password.pop_back();
+                cout << "\b \b";
+            }
+        } else {
+            password += ch;
+            cout << '*';
+        }
+    }
+    cout << '\n';
+    return password;
+}
+
+int main() {
+    string storedUserId;
+    string storedPassword;
+
+    cout << "Creating user ID and password: \n";
+    cout << "Enter user ID: ";
+    cin >> storedUserId;
+
+    cout << "Enter password: ";
+    storedPassword = getPasswordInput();
+
+    string enterUserId;
+    string enterPassword;
+
+    cout << "\nVerifying user ID and password: \n";
+    cout << "Enter User ID: ";
+    cin >> enterUserId;
+
+    cout << "Enter Password: ";
+    enterPassword = getPasswordInput();
+
+    if (enterUserId == storedUserId && enterPassword == storedPassword) {
+        cout << "User ID and Password are correct.\n";
+    } else {
+        cout << "User ID or Password is incorrect.\n";
+    }
+
+    return 0;
+}
